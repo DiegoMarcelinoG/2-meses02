@@ -2,13 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Nossa música ❤️</title>
+<title>🎧 Raindance</title>
 
 <style>
 
 body{
 margin:0;
-background:black;
+background:#121212;
 color:white;
 font-family:Arial;
 display:flex;
@@ -16,14 +16,58 @@ justify-content:center;
 align-items:center;
 height:100vh;
 flex-direction:column;
-text-align:center;
 }
 
+/* player */
+.player{
+text-align:center;
+width:90%;
+max-width:400px;
+}
+
+/* capa */
+.capa{
+width:250px;
+height:250px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* textos */
+.titulo{
+font-size:18px;
+font-weight:bold;
+}
+
+.artista{
+font-size:14px;
+color:#aaa;
+margin-bottom:20px;
+}
+
+/* letra */
 #letra{
-font-size:28px;
-max-width:80%;
-line-height:1.5;
-transition:0.3s;
+margin-top:20px;
+font-size:22px;
+line-height:1.6;
+height:100px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.4s;
+}
+
+.ativa{
+font-size:26px;
+color:#1DB954;
+font-weight:bold;
+transform:scale(1.1);
+}
+
+audio{
+width:100%;
+margin-top:20px;
 }
 
 </style>
@@ -32,26 +76,42 @@ transition:0.3s;
 
 <body>
 
-<h2>🎶 Tocando nossa música...</h2>
+<div class="player">
+
+<img src="capa.jpg" class="capa">
+
+<div class="titulo">Raindance 💖</div>
+<div class="artista">Dave ft. Tems</div>
 
 <div id="letra">💖</div>
 
-<audio id="audio" autoplay controls>
+<audio id="audio" controls autoplay>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
+
+</div>
 
 <script>
 
 const audio = document.getElementById("audio");
 const letra = document.getElementById("letra");
 
+// ⏱️ COMEÇAR EM 50 SEGUNDOS
+audio.addEventListener("loadedmetadata", () => {
+audio.currentTime = 50;
+});
+
+
+// 🎯 SINCRONIZAÇÃO (AJUSTE OS TEMPOS CONFORME OUVE)
 const letras = [
-{tempo: 2, texto: "Eu te amo ❤️"},
-{tempo: 6, texto: "Você é tudo pra mim"},
-{tempo: 10, texto: "Minha vida mudou com você"},
-{tempo: 15, texto: "E eu sou feliz todos os dias"},
-{tempo: 20, texto: "Só de pensar em você 💖"},
-{tempo: 26, texto: "Eu te amo infinitamente ❤️"}
+{tempo: 50, texto: "💭 ..."},
+{tempo: 54, texto: "💭 ..."},
+{tempo: 58, texto: "💭 ..."},
+{tempo: 62, texto: "💭 ..."},
+{tempo: 66, texto: "💭 ..."},
+{tempo: 70, texto: "💭 ..."},
+{tempo: 75, texto: "💭 ..."},
+{tempo: 80, texto: "💭 ..."}
 ];
 
 audio.ontimeupdate = () => {
@@ -60,6 +120,11 @@ let tempoAtual = audio.currentTime;
 for(let i = 0; i < letras.length; i++){
 if(tempoAtual >= letras[i].tempo){
 letra.innerHTML = letras[i].texto;
+letra.classList.add("ativa");
+
+setTimeout(()=>{
+letra.classList.remove("ativa");
+}, 300);
 }
 }
 };
