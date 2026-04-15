@@ -1,1 +1,70 @@
-<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><title>Nossa música ❤️</title></head><body style='background:black;color:white;text-align:center'><h2>🎶 Tocando nossa música...</h2><audio autoplay controls><source src='musica.mp3'></audio></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Nossa música ❤️</title>
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+text-align:center;
+}
+
+#letra{
+font-size:28px;
+max-width:80%;
+line-height:1.5;
+transition:0.3s;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>🎶 Tocando nossa música...</h2>
+
+<div id="letra">💖</div>
+
+<audio id="audio" autoplay controls>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const audio = document.getElementById("audio");
+const letra = document.getElementById("letra");
+
+const letras = [
+{tempo: 2, texto: "Eu te amo ❤️"},
+{tempo: 6, texto: "Você é tudo pra mim"},
+{tempo: 10, texto: "Minha vida mudou com você"},
+{tempo: 15, texto: "E eu sou feliz todos os dias"},
+{tempo: 20, texto: "Só de pensar em você 💖"},
+{tempo: 26, texto: "Eu te amo infinitamente ❤️"}
+];
+
+audio.ontimeupdate = () => {
+let tempoAtual = audio.currentTime;
+
+for(let i = 0; i < letras.length; i++){
+if(tempoAtual >= letras[i].tempo){
+letra.innerHTML = letras[i].texto;
+}
+}
+};
+
+</script>
+
+</body>
+</html>
