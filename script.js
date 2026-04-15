@@ -1,0 +1,1 @@
+function verificar(){let resposta=document.getElementById('resposta').value.toLowerCase().trim();if(resposta==='2 meses'||resposta==='dois meses'){window.location.href='loading.html';}else{document.getElementById('erro').innerHTML='Resposta errada 😢 tenta de novo!';}}
